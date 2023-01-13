@@ -1,0 +1,8 @@
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\bin\Debug\netcoreapp3.1\Shared.Models.deps.json
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\bin\Debug\netcoreapp3.1\Shared.Models.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\bin\Debug\netcoreapp3.1\Shared.Models.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.AssemblyInfoInputs.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.AssemblyInfo.cs
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shared.Models\obj\Debug\netcoreapp3.1\Shared.Models.csproj.CoreCompileInputs.cache

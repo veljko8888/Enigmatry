@@ -1,0 +1,8 @@
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\bin\Debug\netcoreapp3.1\Vendor.Application.deps.json
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\bin\Debug\netcoreapp3.1\Vendor.Application.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\bin\Debug\netcoreapp3.1\Vendor.Application.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.AssemblyInfoInputs.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.AssemblyInfo.cs
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.csproj.CoreCompileInputs.cache

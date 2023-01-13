@@ -1,0 +1,12 @@
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\bin\Debug\netcoreapp3.1\Shop.Application.deps.json
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\bin\Debug\netcoreapp3.1\Shop.Application.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\bin\Debug\netcoreapp3.1\Shop.Application.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.AssemblyInfoInputs.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.AssemblyInfo.cs
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\bin\Debug\netcoreapp3.1\Shared.Models.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\bin\Debug\netcoreapp3.1\Shared.Models.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.csproj.CopyComplete
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.csproj.AssemblyReference.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Application\obj\Debug\netcoreapp3.1\Shop.Application.csproj.CoreCompileInputs.cache

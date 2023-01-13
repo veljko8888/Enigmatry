@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "9163239c-4b9c-4269-8664-92d71ccc7a7b",
+		"name": "EnigmatryShopCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI3ODUiLCJuYmYiOjE2NzM2MTgyNzUsImV4cCI6MTY3MzYyNTQ3NSwiaWF0IjoxNjczNjE4Mjc1fQ.ZIMo1A2eLtn5ip9neyXFzg5Btr4PwhZE6rwz2A_kT1c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44311/api/shop/33/article",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44311",
+					"path": [
+						"api",
+						"shop",
+						"33",
+						"article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"passcode\":\"Enigmatry\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44311/api/auth/GetToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44311",
+					"path": [
+						"api",
+						"auth",
+						"GetToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiI3ODUiLCJuYmYiOjE2NzM2MTgyNzUsImV4cCI6MTY3MzYyNTQ3NSwiaWF0IjoxNjczNjE4Mjc1fQ.ZIMo1A2eLtn5ip9neyXFzg5Btr4PwhZE6rwz2A_kT1c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 112,\r\n    \"name_of_article\": \"Article 53\",\r\n    \"articlePrice\": 140,\r\n    \"isSold\": false,\r\n    \"soldDate\": \"0001-01-01T00:00:00\",\r\n    \"buyerUserId\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44311/api/shop/buy",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44311",
+					"path": [
+						"api",
+						"shop",
+						"buy"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

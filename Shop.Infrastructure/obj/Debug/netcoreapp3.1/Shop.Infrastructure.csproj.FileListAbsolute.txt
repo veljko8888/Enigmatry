@@ -1,0 +1,14 @@
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.deps.json
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Infrastructure.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Application.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shop.Application.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.AssemblyInfo.cs
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csproj.CopyComplete
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shared.Models.dll
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\bin\Debug\netcoreapp3.1\Shared.Models.pdb
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Shop.Infrastructure\obj\Debug\netcoreapp3.1\Shop.Infrastructure.csproj.CoreCompileInputs.cache
