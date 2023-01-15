@@ -39,6 +39,7 @@ namespace Vendor.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public virtual void ConfigureServices(IServiceCollection services)
         {
+            logger.LogTrace("Configure Services started.");
             services.AddControllers();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
@@ -68,11 +69,14 @@ namespace Vendor.Api
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            logger.LogTrace("Configure Services finished.");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            logger.LogTrace("Configure method started.");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -91,6 +95,8 @@ namespace Vendor.Api
             {
                 endpoints.MapControllers();
             });
+
+            logger.LogTrace("Configure method finished.");
         }
     }
 }

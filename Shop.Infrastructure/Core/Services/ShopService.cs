@@ -37,10 +37,10 @@ namespace Shop.Infrastructure.Core.Services
 
         public async Task<Result<ArticleDto>> GetArticle(int id, int maxExpectedPrice, bool isDealerOne = true)
         {
+            _log.LogTrace("Get article from shop started.");
             Result<ArticleDto> result = new Result<ArticleDto>();
             ArticleDto tmpArticle = null;
 
-            _log.LogInformation("Pulling cache service from dependenvy injection");
             var cacheService = _inventoryServices.FirstOrDefault(x => x.GetType() == typeof(CachedInventoryRepository));
 
             if (cacheService != null)
@@ -64,12 +64,13 @@ namespace Shop.Infrastructure.Core.Services
                 }
                 if (tmpArticle != null)
                 {
-                    _log.LogInformation("Article found and retrieved.");
+                    _log.LogTrace($"Article found and retrieved. Article ID: {tmpArticle.ID}");
                     _cacheStoreService.SetArticle(tmpArticle);
                     return ResponseManager<ArticleDto>.GenerateServiceSuccessResult(ResultStatus.Success, tmpArticle, result);
                 }
             }
 
+            _log.LogError($"Failed to retrieve article from shop with ID: {id}.");
             return ResponseManager<ArticleDto>.GenerateErrorServiceResult(
                                                 ResultStatus.NotFound,
                                                 "There is no article with provided id and maximum expected price.",
@@ -78,14 +79,17 @@ namespace Shop.Infrastructure.Core.Services
 
         public async Task<Result<bool>> BuyArticle(ArticleDto article, int buyerId, bool isDealerOne = true)
         {
+            _log.LogTrace("Buy article from shop started.");
             Result<bool> result = new Result<bool>();
             if (article == null)
             {
+                _log.LogError("Failed to order article, invalid article object.");
                 return ResponseManager<bool>.GenerateErrorServiceResult(
                                                 ResultStatus.InvalidParameters,
                                                 "Could not order article.",
                                                 result);
             }
+
             var warehouseService = _inventoryServices.FirstOrDefault(x => x.GetType() == typeof(WarehouseInventoryRepository));
             if (warehouseService != null)
             {
@@ -93,6 +97,7 @@ namespace Shop.Infrastructure.Core.Services
                 if (tmpArticle != null)
                 {
                     HelperManager.StoreBoughtArticle(_db, article, buyerId);
+                    _log.LogTrace("Succesfully retrieved article from warehouse.");
                     return ResponseManager<bool>.GenerateServiceSuccessResult(ResultStatus.Success, true, result);
                 }
                 else
@@ -101,6 +106,7 @@ namespace Shop.Infrastructure.Core.Services
                     if (bought)
                     {
                         HelperManager.StoreBoughtArticle(_db, article, buyerId);
+                        _log.LogTrace("Successfully retrieved article from dealer 1.");
                         return ResponseManager<bool>.GenerateServiceSuccessResult(ResultStatus.Success, true, result);
                     }
                     else
@@ -109,12 +115,14 @@ namespace Shop.Infrastructure.Core.Services
                         if (bought)
                         {
                             HelperManager.StoreBoughtArticle(_db, article, buyerId);
+                            _log.LogTrace("Successfully retrieved article from dealer 2");
                             return ResponseManager<bool>.GenerateServiceSuccessResult(ResultStatus.Success, true, result);
                         }
                     }
                 }
             }
 
+            _log.LogError("Failed to buy article.");
             return ResponseManager<bool>.GenerateErrorServiceResult(
                                                 ResultStatus.InvalidParameters,
                                                 "Failed to buy article.",

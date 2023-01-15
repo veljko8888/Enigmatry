@@ -29,6 +29,7 @@ namespace Vendor.Infrastructure.Core.Services
 
         public async Task<Result<ArticleDto>> GetArticle(int id, int maxExpectedPrice = 0, bool isDealerOne = true)
         {
+            _log.LogTrace($"Get article service started.");
             return await Task.Run(() =>
             {
                 Result<ArticleDto> result = new Result<ArticleDto>();
@@ -40,10 +41,11 @@ namespace Vendor.Infrastructure.Core.Services
                 tmpArticle = supplier != null ? supplier.GetArticle(id) : null;
                 if (tmpArticle != null)
                 {
+                    _log.LogTrace($"Get article service finished successfully. Article ID: {tmpArticle.ID}");
                     return ResponseManager<ArticleDto>.GenerateServiceSuccessResult(ResultStatus.Success, tmpArticle, result);
                 }
 
-                _log.LogInformation("Article does not exist.");
+                _log.LogError("Article does not exist.");
                 return ResponseManager<ArticleDto>.GenerateErrorServiceResult(
                                                     ResultStatus.NotFound,
                                                     "There is no article with provided id.",
@@ -53,11 +55,13 @@ namespace Vendor.Infrastructure.Core.Services
 
         public async Task<Result<bool>> BuyArticle(ArticleDto article, int buyerId, bool isDealerOne = true)
         {
+            _log.LogTrace($"Buy article service started.");
             return await Task.Run(() =>
             {
                 Result<bool> result = new Result<bool>();
                 if (article == null)
                 {
+                    _log.LogError($"Article retrieval failed. Article from body is null.");
                     return ResponseManager<bool>.GenerateErrorServiceResult(
                                                     ResultStatus.InvalidParameters,
                                                     "Could not order article.",
@@ -72,9 +76,11 @@ namespace Vendor.Infrastructure.Core.Services
                     if (tmpArticle != null)
                     {
                         HelperManager.StoreBoughtArticle(_db, article, buyerId);
+                        _log.LogTrace($"Buy article finished. Bought article with ID: {article.ID}");
                         return ResponseManager<bool>.GenerateServiceSuccessResult(ResultStatus.Success, true, result);
                     }
 
+                    _log.LogError($"Failed to buy article.");
                     return ResponseManager<bool>.GenerateErrorServiceResult(
                                                     ResultStatus.InvalidParameters,
                                                     "Failed to buy article.",

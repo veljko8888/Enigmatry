@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Shared.Models.Models;
@@ -18,15 +19,21 @@ namespace Shop.Infrastructure.Core.Integration
     {
         private readonly AppSettings _appSettings;
         private readonly IMemoryCache _cache;
+        private readonly ILogger<DealerCommunicator> _log;
 
-        public DealerCommunicator(IOptions<AppSettings> appSettings, IMemoryCache memoryCache)
+        public DealerCommunicator(
+            IOptions<AppSettings> appSettings, 
+            IMemoryCache memoryCache,
+            ILogger<DealerCommunicator> log)
         {
             _appSettings = appSettings.Value;
             _cache = memoryCache;
+            _log = log;
         }
 
         public async Task<ArticleDto> GetArticle(int id, HttpCommunicatorEnum httpDealer)
         {
+            _log.LogTrace("Get article started.");
             var httpClientURL = httpDealer == HttpCommunicatorEnum.DealerOne ? _appSettings.DealerOneURL : _appSettings.DealerTwoURL;
             using (var client = new HttpClient())
             {
@@ -37,15 +44,18 @@ namespace Shop.Infrastructure.Core.Integration
                 if(response.IsSuccessStatusCode)
                 {
                     var article = JsonConvert.DeserializeObject<ArticleDto>(response.Content.ReadAsStringAsync().Result);
+                    _log.LogTrace("Get article finished.");
                     return article;
                 }
 
+                _log.LogTrace("Get article finished.");
                 return null;
             }
         }
 
         public async Task<bool> BuyArticle(ArticleDto article, HttpCommunicatorEnum httpDealer)
         {
+            _log.LogTrace("Buy article started.");
             var httpClientURL = httpDealer == HttpCommunicatorEnum.DealerOne ? _appSettings.DealerOneURL : _appSettings.DealerTwoURL;
             using (var client = new HttpClient())
             {
@@ -60,15 +70,18 @@ namespace Shop.Infrastructure.Core.Integration
                 if (result.IsSuccessStatusCode)
                 {
                     var articleBought = JsonConvert.DeserializeObject<bool>(result.Content.ReadAsStringAsync().Result);
+                    _log.LogTrace("Buy article finished.");
                     return articleBought;
                 }
 
+                _log.LogTrace("Buy article finished.");
                 return false;
             }
         }
 
         private async Task<string> GetVendorAuthorizationToken(HttpClient client)
         {
+            _log.LogTrace("Get vendor authorization token started.");
             string bearerToken;
             if (!_cache.TryGetValue("token", out bearerToken))
             {
@@ -83,10 +96,12 @@ namespace Shop.Infrastructure.Core.Integration
                     .SetAbsoluteExpiration(TimeSpan.FromMinutes(120));
 
                 _cache.Set("token", token.Token, cacheEntryOptions);
+                _log.LogTrace($"Vendor authorization token stored in cache ${token.Token}.");
                 bearerToken = token.Token;
             }
 
             return bearerToken;
+            _log.LogTrace($"Vendor authorization token retrieved ${ bearerToken }");
         }
     }
 }

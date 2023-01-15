@@ -31,7 +31,9 @@ namespace Vendor.Api.Controllers
         [Route("{id}/article")]
         public async Task<IActionResult> GetArticle([FromRoute] int id)
         {
+            _log.LogTrace("Get article on dealer 2 api started.");
             var articleResult = await _dealerService.GetArticle(id, 0, false);
+            _log.LogTrace("Get article on dealer 2 api finished.");
             return GenerateResponse(articleResult);
         }
 
@@ -39,14 +41,17 @@ namespace Vendor.Api.Controllers
         [Route("buy")]
         public async Task<IActionResult> BuyArticle([FromBody] ArticleDto article)
         {
+            _log.LogTrace("Buy article on dealer 2 api started.");
             int partnerCompanyID = 0;
             var identityClaim = User.Claims.FirstOrDefault(x => x.Type == "CompanyID");
             if (int.TryParse(identityClaim.Value, out partnerCompanyID))
             {
                 var articleResult = await _dealerService.BuyArticle(article, partnerCompanyID, false);
+                _log.LogTrace("Buy article on dealer 2 api finished.");
                 return GenerateResponse(articleResult);
             }
 
+            _log.LogError("Buy article on dealer 2 api failed due to identity claim parsing fail.");
             return BadRequest("Failed to parse identity claim.");
         }
     }

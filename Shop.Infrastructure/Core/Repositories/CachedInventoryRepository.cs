@@ -1,4 +1,5 @@
-﻿using Shared.Models.Contracts;
+﻿using Microsoft.Extensions.Logging;
+using Shared.Models.Contracts;
 using Shared.Models.Shop;
 using Shop.Application.Core.Interfaces;
 using System;
@@ -9,6 +10,14 @@ namespace Shop.Infrastructure.Core.Repositories
 {
     public class CachedInventoryRepository : IInventory, IInventoryStore
     {
+        private readonly ILogger<CachedInventoryRepository> _log;
+
+        public CachedInventoryRepository(
+            ILogger<CachedInventoryRepository> log)
+        {
+            _log = log;
+        }
+
         private Dictionary<int, ArticleDto> _cachedArticles = new Dictionary<int, ArticleDto>() 
         {
             { 1, new ArticleDto { ID = 1, ArticlePrice = 110, Name_of_article = "Article 1" } },
@@ -27,17 +36,19 @@ namespace Shop.Infrastructure.Core.Repositories
         {
             try
             {
+                _log.LogTrace("Get article from cache started.");
                 ArticleDto article = null;
                 if (_cachedArticles.ContainsKey(id))
                 {
                     _cachedArticles.TryGetValue(id, out article);
                 }
-                
+
+                _log.LogTrace($"Get article from cache finished, returning article with ID {id}.");
                 return article;
             }
-            catch (ArgumentNullException)
+            catch (Exception ex)
             {
-                //logger add
+                _log.LogError($"Get article from cache failed with exception: {ex.Message}.");
                 return null;
             }
         }
@@ -46,14 +57,16 @@ namespace Shop.Infrastructure.Core.Repositories
         {
             try
             {
+                _log.LogTrace("Set article to cache started.");
                 if (!_cachedArticles.ContainsKey(article.ID))
                 {
                     _cachedArticles.Add(article.ID, article);
                 }
+                _log.LogTrace("Set article to cache finished.");
             }
             catch (Exception ex)
             {
-                //logger add
+                _log.LogError($"Set article to cache failed with exception: {ex.Message}.");
             }
         }
     }

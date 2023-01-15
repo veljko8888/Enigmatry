@@ -32,7 +32,9 @@ namespace Shop.Api.Controllers
         [Route("{id}/article")]
         public async Task<IActionResult> GetArticle([FromRoute] int id, int maxExpectedPrice = 200)
         {
+            _log.LogTrace("Article retrieval started started.");
             var articleResult = await _shopService.GetArticle(id, maxExpectedPrice);
+            _log.LogTrace("Article retrieval finished.");
             return GenerateResponse(articleResult);
         }
 
@@ -40,14 +42,17 @@ namespace Shop.Api.Controllers
         [Route("buy")]
         public async Task<IActionResult> BuyArticle([FromBody] ArticleDto article)
         {
+            _log.LogTrace("Buying article started.");
             int userID = 0;
             var identityClaim = User.Claims.FirstOrDefault(x => x.Type == "UserID");
             if (int.TryParse(identityClaim.Value, out userID))
             {
                 var articleResult = await _shopService.BuyArticle(article, userID);
+                _log.LogTrace("Buying article finished.");
                 return GenerateResponse(articleResult);
             }
 
+            _log.LogError("Failed to buy article due to identity claim parsing error.");
             return BadRequest("Failed to parse identity claim.");
         }
     }

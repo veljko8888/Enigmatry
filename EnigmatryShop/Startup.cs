@@ -37,22 +37,20 @@ namespace EnigmatryShop
             logger = loggerFactory.CreateLogger<Startup>();
         }
 
-        private static CachedInventoryRepository CacheService;
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            logger.LogInformation("Configure Services started.");
+            logger.LogTrace("Configure Services started.");
 
             services.AddControllers();
             services.AddMemoryCache();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddScoped<IShopService, ShopService>();
-            CacheService = new CachedInventoryRepository();
-            services.AddSingleton<IInventory>(provider => CacheService);
-            services.AddSingleton<IInventoryStore>(provider => CacheService);
+            services.AddSingleton<IInventory, CachedInventoryRepository>();
+            services.AddSingleton<IInventoryStore, CachedInventoryRepository>();
             services.AddSingleton<IInventory, WarehouseInventoryRepository>();
             services.AddScoped<IDealerCommunicator, DealerCommunicator>();
             services.AddSingleton<IDb, ShopDb>();
@@ -79,12 +77,13 @@ namespace EnigmatryShop
                 };
             });
 
-            logger.LogInformation("Configure Services finished.");
+            logger.LogTrace("Configure Services finished.");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            logger.LogTrace("Configure Method started.");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -103,6 +102,8 @@ namespace EnigmatryShop
             {
                 endpoints.MapControllers();
             });
+
+            logger.LogTrace("Configure method finished.");
         }
     }
 }

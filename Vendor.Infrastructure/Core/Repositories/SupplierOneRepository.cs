@@ -1,4 +1,5 @@
-﻿using Shared.Models.Contracts;
+﻿using Microsoft.Extensions.Logging;
+using Shared.Models.Contracts;
 using Shared.Models.Shop;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,14 @@ namespace Vendor.Infrastructure.Core.Repositories
 {
     public class SupplierOneRepository : IInventory
     {
+        private readonly ILogger<SupplierOneRepository> _log;
+
+        public SupplierOneRepository(
+            ILogger<SupplierOneRepository> log)
+        {
+            _log = log;
+        }
+
         private Dictionary<int, ArticleDto> _supplierOneArticles = new Dictionary<int, ArticleDto>()
         {
             { 21, new ArticleDto { ID = 21, ArticlePrice = 110, Name_of_article = "Article 21" } },
@@ -26,17 +35,19 @@ namespace Vendor.Infrastructure.Core.Repositories
         {
             try
             {
+                _log.LogTrace("Get article from supplier 1 started.");
                 ArticleDto article = null;
                 if (_supplierOneArticles.ContainsKey(id))
                 {
                     _supplierOneArticles.TryGetValue(id, out article);
                 }
 
+                _log.LogTrace("Get article from supplier 1 finished.");
                 return article;
             }
-            catch (ArgumentNullException)
+            catch (Exception ex)
             {
-                //logger add
+                _log.LogError($"Get article from supplier 1 failed with exception: {ex.Message}.");
                 return null;
             }
         }

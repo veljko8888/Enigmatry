@@ -6,3 +6,4 @@ C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcorea
 C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.dll
 C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.pdb
 C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\source\repos\EnigmatryShop\Vendor.Application\obj\Debug\netcoreapp3.1\Vendor.Application.csproj.AssemblyReference.cache
